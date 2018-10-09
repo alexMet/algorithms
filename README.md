@@ -9,6 +9,10 @@ gcc –std=c99 -Wall –Werror -O3 program.c -o el
 - Priority queue
 - A* algorithm
 - Bresenham algorithm
+## OCaml
+```sh
+ocamlopt -O3 program.ml -o el
+```
 ```sh
 sml program.sml
 ```
@@ -48,7 +52,7 @@ java Bats testcases/testcase1  4.74s user 0.13s system 120% cpu 4.052 total
 val kouvadakia = fn : int -> int -> int -> string
 - kouvadakia 5 7 6;
 val it = "02-21-10-21-02-21-10-21-02-21" : string
-```
+```sh
 java Kouvadakia 5 7 6
 02-21-10-21-02-21-10-21-02-21
 ```
