@@ -9,6 +9,8 @@ gcc –std=c99 -Wall –Werror -O3 program.c -o el
 - Priority queue
 - A* algorithm
 - Bresenham algorithm
+- Binary search
+- Merge sort
 ## OCaml
 ```sh
 ocamlopt -O3 program.ml -o el
