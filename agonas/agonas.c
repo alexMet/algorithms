@@ -44,51 +44,51 @@ void quick_sort (long double *a, int *b, int n) {
 }
 
 int main(int argc, char **argv) {
-	FILE *fd;
-	int n, l, i, j, dist;
-	long double temp;
+    FILE *fd;
+    int n, l, i, j, dist;
+    long double temp;
 
-	fd = fopen(argv[1], "r");
-	if (fd == NULL) {
-		fprintf(stderr, "Failed to open file\n");
-		exit(1);
-	}
+    fd = fopen(argv[1], "r");
+    if (fd == NULL) {
+        fprintf(stderr, "Failed to open file\n");
+        exit(1);
+    }
 
-	if ((fscanf(fd, "%d %d", &n, &l)) != 2) {
-		fprintf(stderr,"Failed to read\n");
-		exit(1);
-	}
+    if ((fscanf(fd, "%d %d", &n, &l)) != 2) {
+        fprintf(stderr,"Failed to read\n");
+        exit(1);
+    }
 
-	for (i = 0; i < n; i++) {
-		if ((fscanf(fd, "%d %f", &d[i], &v[i])) != 2) {
-			fprintf(stderr,"Failed to read\n");
-			exit(1);
-		}
-		place[i] = i + 1;
-		t[i] = -1.0L;
-	}
+    for (i = 0; i < n; i++) {
+        if ((fscanf(fd, "%d %f", &d[i], &v[i])) != 2) {
+            fprintf(stderr,"Failed to read\n");
+            exit(1);
+        }
+        place[i] = i + 1;
+        t[i] = -1.0L;
+    }
 
-	fclose(fd);
+    fclose(fd);
 
-	for (i = 0; i < n; i++) {
-		j = (i + 1) % n;
+    for (i = 0; i < n; i++) {
+        j = (i + 1) % n;
 
-		while (v[j] < v[i]) {
-			if (d[j] > d[i]) dist = d[j] - d[i];
-			else dist = l - d[i] + d[j];
-			temp =  ((long double) dist) / (v[i] - v[j]);
-			if ((t[j] < 0) || (temp < t[j])) t[j] = temp;
-			j = (j + 1) % n;
-		}
-	}
+        while (v[j] < v[i]) {
+            if (d[j] > d[i]) dist = d[j] - d[i];
+            else dist = l - d[i] + d[j];
+            temp =  ((long double) dist) / (v[i] - v[j]);
+            if ((t[j] < 0) || (temp < t[j])) t[j] = temp;
+            j = (j + 1) % n;
+        }
+    }
 
-	quick_sort(t, place, n);
+    quick_sort(t, place, n);
 
-	for (i = 0; i < n - 1; i++) {
-		if (t[i] < 0) continue;
-		else printf("%d ", place[i]);
-	}
-	printf("%d\n", place[n-1]);
+    for (i = 0; i < n - 1; i++) {
+        if (t[i] < 0) continue;
+        else printf("%d ", place[i]);
+    }
+    printf("%d\n", place[n-1]);
 
-	return 0;
+    return 0;
 }

@@ -44,86 +44,87 @@ void quick_sort (int *a, int *b, int *c, int n) {
 
 
 int search(int *x, int *x2, int *x3, int stop, int this, int length) {
-	int i, begin, temp = 0;
+    int i, begin, temp = 0;
 
-	while (x3[temp] > stop) temp++;
+    while (x3[temp] > stop) temp++;
 
-	if (x[temp] > this) return 0;
-	begin = x2[temp];
+    if (x[temp] > this) return 0;
+    begin = x2[temp];
 
-	for (i = temp + 1; i < n; i++) {
-		if (x3[i] > stop) continue;
+    for (i = temp + 1; i < n; i++) {
+        if (x3[i] > stop) continue;
 
-		if (x[i] <= begin) {
-			if (x2[i] > begin) begin = x2[i];
-		}
-		else {
-			if (x[i] - begin > this) return 0;
-			begin = x2[i];
-		}
+        if (x[i] <= begin) {
+            if (x2[i] > begin) begin = x2[i];
+        }
+        else {
+            if (x[i] - begin > this) return 0;
+            begin = x2[i];
+        }
 
-		if (length - begin <= this) return 1;
-	}
-	if (length - begin > this) return 0;
+        if (length - begin <= this) return 1;
+    }
+    if (length - begin > this) return 0;
 
-	return 1;
+    return 1;
 }
 
 
 int binary(int low, int high, int target, int length) {
-	int ans = -1, mid, temp;
+    int ans = -1, mid, temp;
 
-	while (low <= high) {
-		mid = (low + high) / 2;
+    while (low <= high) {
+        mid = (low + high) / 2;
 
-		temp = search(beg, end, days, mid, target, length);
+        temp = search(beg, end, days, mid, target, length);
 
-		if (temp) {
-			ans = mid;
-			high = mid - 1;
-		}
-		else {
-			low = mid + 1;
-		}
-	}
-	return ans;
+        if (temp) {
+            ans = mid;
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+
+    return ans;
 }
 
 
 int main(int argc, char **argv) {
-	FILE *fd;
-	int l, x, i, day;
+    FILE *fd;
+    int l, x, i, day;
 
-	fd = fopen(argv[1], "r");
-	if (fd == NULL) {
-		fprintf(stderr, "File not found\n");
-		exit(1);
-	}
+    fd = fopen(argv[1], "r");
+    if (fd == NULL) {
+        fprintf(stderr, "File not found\n");
+        exit(1);
+    }
 
-	if (fscanf(fd, "%d %d %d", &n, &l, &x) != 3) {
-		fprintf(stderr, "Failed to read from file\n");
-		exit(1);
-	}
+    if (fscanf(fd, "%d %d %d", &n, &l, &x) != 3) {
+        fprintf(stderr, "Failed to read from file\n");
+        exit(1);
+    }
 
-	if (l <= x) {
-		printf("0\n");
-		return 0;
-	}
+    if (l <= x) {
+        printf("0\n");
+        return 0;
+    }
 
-	for (i = 0; i < n; i++) {
-		if (fscanf(fd, "%d %d", &beg[i], &end[i]) != 2) {
-			fprintf(stderr, "Failed to read from file\n");
-			exit(1);
-		}
+    for (i = 0; i < n; i++) {
+        if (fscanf(fd, "%d %d", &beg[i], &end[i]) != 2) {
+            fprintf(stderr, "Failed to read from file\n");
+            exit(1);
+        }
 
-		days[i] = i;
-	}
+        days[i] = i;
+    }
 
-	quick_sort(beg, end, days, n);
+    quick_sort(beg, end, days, n);
 
-	if ((day = binary(0, n - 1, x, l)) != -1) day++;
-	printf("%d\n", day);
+    if ((day = binary(0, n - 1, x, l)) != -1) day++;
+    printf("%d\n", day);
 
-  fclose(fd);
-	return 0;
+    fclose(fd);
+    return 0;
 }

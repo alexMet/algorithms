@@ -44,53 +44,53 @@ static int happy[] = { 0,
 int digit_sqr[] = {0, 1, 4, 9, 16, 25, 36, 49, 64, 81};
 
 int sum_of_digits (int num) {
-	int digit;
-	unsigned int sum = 0;
+    int digit;
+    unsigned int sum = 0;
 
-	while (num) {
-		digit = num % 10;
-		sum += digit_sqr[digit];
-		num /= 10;
-	}
+    while (num) {
+        digit = num % 10;
+        sum += digit_sqr[digit];
+        num /= 10;
+    }
 
-	return sum;
+    return sum;
 }
 
 int sumanos (int dl, int dr, int ul, int ur) {
-	int sum = 0, i, j;
+    int sum = 0, i, j;
 
-	if (dl == ul) {
-		for (i = dr; i <= ur; i++)
-			if (happy[sums[dl] + sums[i]]) sum++;
-	}
-	else {
-		for (i = dr; i < 100000; i++)
-			if (happy[sums[dl] + sums[i]]) sum++;
+    if (dl == ul) {
+        for (i = dr; i <= ur; i++)
+        if (happy[sums[dl] + sums[i]]) sum++;
+    }
+    else {
+        for (i = dr; i < 100000; i++)
+            if (happy[sums[dl] + sums[i]]) sum++;
 
-		for (i = dl+1; i < ul; i++)
-			for (j = 0; j < 100000; j++)
-				if (happy[sums[i] + sums[j]]) sum++;
+        for (i = dl+1; i < ul; i++)
+            for (j = 0; j < 100000; j++)
+                if (happy[sums[i] + sums[j]]) sum++;
 
-		for (i = 0; i <= ur; i++)
-			if (happy[sums[ul] + sums[i]]) sum++;
-	}
+        for (i = 0; i <= ur; i++)
+            if (happy[sums[ul] + sums[i]]) sum++;
+    }
 
-	return sum;
+    return sum;
 }
 
 int main(int argc, char **argv) {
-	int up, down, i;
-	FILE *fd;
+    int up, down, i;
+    FILE *fd;
 
-	fd = fopen(argv[1], "r");
-	if (fscanf(fd, "%d %d", &down, &up) != 2)
-		return 1;
+    fd = fopen(argv[1], "r");
+    if (fscanf(fd, "%d %d", &down, &up) != 2)
+        return 1;
 
-	for (i = 0; i < 100000; i++)
-		sums[i] = sum_of_digits(i);
+    for (i = 0; i < 100000; i++)
+        sums[i] = sum_of_digits(i);
 
-	printf("%d\n", sumanos(down / 100000, down % 100000, up / 100000, up % 100000));
-	fclose(fd);
+    printf("%d\n", sumanos(down / 100000, down % 100000, up / 100000, up % 100000));
+    fclose(fd);
 
-	return 0;
+    return 0;
 }

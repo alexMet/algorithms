@@ -24,7 +24,7 @@ loop(_, _, _, _, Vg, [], Vg, 2, _, _).
 loop(X1, Y1, [Moves1|Rest1], X2, Y2, [Moves2|Rest2], Vg, Sol, V1, V2):-
   expandLeft(X1, Y1, Moves1, X11, Y11, V1, V2),
   expandRight(X2, Y2, Moves2, X22, Y22, V1, V2),
-loop(X11, Y11, Rest1, X22, Y22, Rest2, Vg, Sol, V1, V2).
+  loop(X11, Y11, Rest1, X22, Y22, Rest2, Vg, Sol, V1, V2).
 
 kouvadakia(V1, V2, Vg, _) :- Vg > V1, Vg > V2, !, false.
 kouvadakia(V1, V2, Vg, _) :- gcd(V1, V2, D), Vg mod D =\= 0, !, false.
