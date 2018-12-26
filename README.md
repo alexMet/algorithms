@@ -30,6 +30,10 @@ javac Program.java
 ```sh
 swipl program.pl
 ```
+## YAP
+```sh
+yap program.pl
+```
 ### agones
 SML
 ```sml
