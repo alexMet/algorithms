@@ -1,5 +1,9 @@
-# programming-languages-shmmy
+# Γλώσσες Προγραμματισμού Ι
 My solutions for some algorithms, using multiple programming languages.
+
+Γλώσσες Προγραμματισμού Ι (Programming Languages I)
+Προπτυχιακό μάθημα, 6ου εξαμήνου. Υποχρεωτικό στη ροή Λ της ΣΗΜΜΥ
+https://courses.softlab.ntua.gr/
 
 ## C
 ```sh
@@ -66,5 +70,3 @@ java Kouvadakia 5 7 6
 ?- kouvadakia(5, 7, 6, X).
 X = ['02', '21', '10', '21', '02', '21', '10', '21', '02'|...].
 ```
-
-
